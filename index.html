@@ -13,17 +13,42 @@
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script>
     function initialize() {
-    var mapProp = {
-        center: new google.maps.LatLng(-27.456417,153.0299067),
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControlOptions: {
-          mapTypeIds: [google.maps.MapTypeId.ROADMAP]
-        },
-        disableDefaultUI: true,
-        scrollwheel: false
-    };
-    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        var camphill = {lat: -27.4973388, lng: 153.0580573};
+        var fortitude = {lat: -27.456417, lng: 153.0299067};
+        var waypts = [{
+            location: {lat: -27.4842662, lng: 153.0449117},
+            stopover: true
+        }];
+
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var mapProp = {
+            center: new google.maps.LatLng(-27.456417,153.0299067),
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControlOptions: {
+              mapTypeIds: [google.maps.MapTypeId.ROADMAP]
+            },
+            disableDefaultUI: true,
+            scrollwheel: false
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+        directionsService.route(
+        {
+            origin: camphill,
+            destination: fortitude,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+        }
+        });
+
+        directionsDisplay.setMap(map);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
     </script>
@@ -35,7 +60,7 @@
 
     <div id="overlay">
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col m4">
                 <div class="card hoverable">
                     <div class="card-content">
                         <span class="card-title">Card Title</span>
