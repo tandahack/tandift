@@ -1,31 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <!--Import Google Icon Font-->
-   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   <!--Import materialize.css-->
-   <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/app.css"  media="screen,projection"/>
 
-   <!--Let browser know website is optimized for mobile-->
-   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+    function initialize() {
+    var mapProp = {
+        center: new google.maps.LatLng(-27.456417,153.0299067),
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControlOptions: {
+          mapTypeIds: [google.maps.MapTypeId.ROADMAP]
+        },
+        disableDefaultUI: true,
+        scrollwheel: false
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 </head>
 
 <body>
 
-    <div class="row">
-        <div class="col s12 m6">
-            <div class="card">
-            <div class="card-content">
-              <span class="card-title">Card Title</span>
-              <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
-              </div>
-              <div class="card-action">
-                  <a href="#">This is a link</a>
-                  <a href="#">This is a link</a>
+    <div id="googleMap"></div>
+
+    <div id="overlay">
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Card Title</span>
+                  <p>I am a very simple card. I am good at containing small bits of information.
+                      I am convenient because I require little markup to use effectively.</p>
+                  </div>
+                  <div class="card-action">
+                      <a href="#">This is a link</a>
+                      <a href="#">This is a link</a>
+                  </div>
               </div>
           </div>
-      </div>
+    </div>
   </div>
 
    <!--Import jQuery before materialize.js-->
