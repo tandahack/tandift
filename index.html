@@ -5,6 +5,9 @@
    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <!--Import materialize.css-->
    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    
+    <!--Login and Sing up Card-->
+    <link type="text/css" rel="stylesheet" href="css/login.css"/>
 
    <!--Let browser know website is optimized for mobile-->
    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,24 +15,36 @@
 
 <body>
 
-    <div class="row">
-        <div class="col s12 m6">
-            <div class="card">
-            <div class="card-content">
-              <span class="card-title">Card Title</span>
-              <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
-              </div>
-              <div class="card-action">
-                  <a href="#">This is a link</a>
-                  <a href="#">This is a link</a>
-              </div>
-          </div>
+    <div id="container">
+  <!-- Login -->
+    <div class="box">
+        <row>
+        <h3>Hi, welcome to Tandift</h3>
+            </row>
+        <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
       </div>
-  </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    </form>
+        </div>
+  <!-- Signup -->
+    <div class="box-back"></div>
+</div>
+<button id="animate" class="livedemo">Sign Up Now</button>
+
 
    <!--Import jQuery before materialize.js-->
    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>
