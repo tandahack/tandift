@@ -4,16 +4,13 @@ import sys
 import logging
 import traceback
 
-class Application:
+class SQLConnection:
     def __init__(self):
-
         self.conn = sqlite3.connect('tandift.db')
         self.c = self.conn.cursor()
 
-        self.execSQL("ATTACH DATABASE 'MarkTime.db' as upload;")
-        self.execSQL("BEGIN;")
-        for table in self.getTables():
 
+        for table in self.getTables():
             cols = self.getColumns(table)
             if len(cols)>1:
                 k = cols[1]
