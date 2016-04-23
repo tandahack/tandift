@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/app.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/login.css"/>
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+    function initialize() {
+        var camphill = {lat: -27.4973388, lng: 153.0580573};
+        var fortitude = {lat: -27.456417, lng: 153.0299067};
+        var waypts = [{
+            location: {lat: -27.4842662, lng: 153.0449117},
+            stopover: true
+        }];
+        
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var mapProp = {
+            center: new google.maps.LatLng(-27.456417,153.0299067),
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControlOptions: {
+              mapTypeIds: [google.maps.MapTypeId.ROADMAP]
+            },
+            // disableDefaultUI: true,
+            scrollwheel: false
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+        directionsService.route(
+        {
+            origin: camphill,
+            destination: fortitude,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+        }
+        });
+
+        directionsDisplay.setMap(map);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+
+    <div id="googleMap"></div>
+
+        <div id="container">
+  <!-- Login -->
+    <div class="box">
+        <row>
+        <h3>Hi, welcome to Tandift</h3>
+            </row>
+        <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    </form>
+        </div>
+  <!-- Signup -->
+    <div class="box-back"></div>
+</div>
+<button id="animate" class="livedemo">Sign Up Now</button>
+
+   <!--Import jQuery before materialize.js-->
+   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>
